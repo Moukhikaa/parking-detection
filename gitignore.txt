@@ -1,0 +1,9 @@
+__pycache__
+venv/
+.idea
+venv3.10/
+keshav_key.pem
+app/CarParkPos
+app/counter
+app/my_dict
+.dockerignore
