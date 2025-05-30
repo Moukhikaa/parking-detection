@@ -1,12 +1,10 @@
-import uvicorn
 from fastapi import FastAPI
 import pickle
-from . import script
+import script
 import csv
 import datetime
 from fastapi.responses import StreamingResponse
 import cv2
-
 
 with open('my_dict', 'rb') as f3:
     mydict = pickle.load(f3)
@@ -26,7 +24,7 @@ def output():
     return {'list': anslist, 'count': count}
 
 def generate_video():
-    cap = cv2.VideoCapture("app/carPark.mp4")
+    cap = cv2.VideoCapture("carPark.mp4")
     while True:
         success, img = cap.read()
         if not success:
@@ -43,7 +41,6 @@ def generate_video():
 
         script.checkParkingSpace(imgDilate, img)
 
-        # Encode frame to JPEG
         ret, buffer = cv2.imencode('.jpg', img)
         frame = buffer.tobytes()
 
@@ -53,6 +50,3 @@ def generate_video():
 @app.get('/video_feed')
 def video_feed():
     return StreamingResponse(generate_video(), media_type='multipart/x-mixed-replace; boundary=frame')
-
-if __name__ == '__main__':
-    uvicorn.run(app, host='127.0.0.1', port=8000)
