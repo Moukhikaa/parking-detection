@@ -36,3 +36,14 @@ A lightweight *real-time parking space monitoring system* that detects available
 | GET    | /video_feed    | Streams live video with slot annotations |
 
 ---
+
+## Deployment Link
+
+https://parking-detection.onrender.com/video_feed
+
+---
+
+## Video
+
+![Demo](gif.gif)
+
